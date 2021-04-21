@@ -6,9 +6,13 @@ class DishDetail extends Component {
     render() {
         const { dish } = this.props;
         return (
-            <div className="col-12">
-                {this.renderDish(dish)}
+            <div className="container">
+                <div className="col-12">
+                    {this.renderDish(dish)}
+                </div>
+
             </div>
+
         );
     }
 
