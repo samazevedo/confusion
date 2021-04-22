@@ -1,0 +1,53 @@
+.row-header{
+    margin:0px auto;
+    padding:0px auto;
+}
+
+.row-content {
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height:400px;
+}
+
+.footer{
+    background-color: #2E3409;
+    color:#CBE432;
+    margin:0px auto;
+    padding: 20px 0px 20px 0px;
+}
+.footer a {
+    color:#CBE432;
+
+}
+.jumbotron {
+    padding:70px 30px 70px 30px;
+    margin:0px auto;
+    background:#BFD376; ;
+    color:#2E3409;
+}
+
+address{
+    font-size:80%;
+    margin:0px;
+    color:#CBE432;
+}
+.navbar {
+    background: #2E3409;
+}
+
+a {
+    color:#f7fbdf;
+}
+a:hover{
+    color:#CBE432;
+}
+
+.MainPage {
+    background: #f7fbdf;
+}
+
+.card {
+    background-color: #2E3409;
+    color:#f7fbdf;
+}
