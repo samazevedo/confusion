@@ -27,8 +27,10 @@ class CommentForm extends Component {
         });
     }
     handleComment(values) {
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        //console.log("Current State is: " + JSON.stringify(values));
+        //alert("Current State is: " + JSON.stringify(values));
         //event.preventDefault();
     }
 
@@ -64,9 +66,9 @@ class CommentForm extends Component {
                                             </Col>
                                         </Row>
                                         <Row className="form-group">
-                                            <Label htmlFor="yourname" md={2}>Your Name</Label>
+                                            <Label htmlFor="author" md={2}>Your Name</Label>
                                             <Col md={10}>
-                                                <Control.text model=".yourname" id="fullname" name="yourname"
+                                                <Control.text model=".author" id="author" name="author"
                                                     className="form-control"
                                                     placeholder=" Your Name"
                                                     validators={{
@@ -144,7 +146,7 @@ function RenderDish({ dish }) {
 }
 
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
     if (comments != null) {
         return (
             <React.Fragment>
@@ -161,7 +163,7 @@ function RenderComments({ comments }) {
                             );
                         })}
                     </ul>
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment} />
                 </div>
 
             </React.Fragment>
@@ -195,7 +197,9 @@ const DishDetail = (props) => {
                 </div>
                 <div className="row">
                     <RenderDish dish={props.dish} />
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments}
+                        addComment={props.addComment}
+                        dishId={props.dish.id} />
                 </div>
             </div>
 
