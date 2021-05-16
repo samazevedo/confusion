@@ -30,7 +30,7 @@ class CommentForm extends Component {
     }
     handleComment(values) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         //console.log("Current State is: " + JSON.stringify(values));
         //alert("Current State is: " + JSON.stringify(values));
         //event.preventDefault();
@@ -81,7 +81,7 @@ class CommentForm extends Component {
                                                 />
                                                 <Errors
                                                     className="text-danger"
-                                                    model=".yourname"
+                                                    model=".author"
                                                     show="touched"
                                                     messages={{
                                                         required: 'Required',
@@ -105,10 +105,10 @@ class CommentForm extends Component {
                                                 />
                                                 <Errors
                                                     className="text-danger"
-                                                    model=".firstname"
+                                                    model=".comment"
                                                     show="touched"
                                                     messages={{
-                                                        required: 'Required',
+                                                        required: 'Required ',
                                                         minLength: 'Must be greater than 2 characters',
                                                         maxLength: 'Must be 100 characters or less',
                                                     }}
@@ -148,7 +148,7 @@ function RenderDish({ dish }) {
 }
 
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
     if (comments != null) {
         return (
             <React.Fragment>
@@ -159,13 +159,13 @@ function RenderComments({ comments, addComment, dishId }) {
                             return (
                                 <div>
                                     <p>{comment.comment}</p>
-                                    <p>{comment.author},  {FormatDate(comment.date)}</p>
+                                    <p>{comment.author},  {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</p>
 
                                 </div>
                             );
                         })}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
 
             </React.Fragment>
@@ -202,7 +202,7 @@ const DishDetail = (props) => {
         );
     }
 
-    if (props.dish != null)
+    if (props.dish != null) {
         return (
             <div className="container">
                 <div className="row">
@@ -219,32 +219,18 @@ const DishDetail = (props) => {
                 <div className="row">
                     <RenderDish dish={props.dish} />
                     <RenderComments comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id} />
                 </div>
             </div>
-
         );
+    }
     else {
         return (
             <div></div>
         );
     }
 }
-
-
-
-
-
-function FormatDate(date) {
-    const option = { year: 'numeric', month: 'short', day: 'numeric' };
-    const date1 = new Date(date)
-    const newdate = date1.toLocaleDateString("en-US", option)
-    return newdate;
-}
-
-
-
 
 
 export default DishDetail;
