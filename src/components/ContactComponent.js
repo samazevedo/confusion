@@ -16,7 +16,6 @@ class Contact extends Component {
     constructor(props) {
         super(props);
 
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -28,16 +27,9 @@ class Contact extends Component {
         this.props.resetFeedbackForm();
         //event.preventDefault();
     }
-    handleFeedback(values) {
-        this.handleSubmit();
-        this.props.postFeedback(this.props, values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message)
-
-    }
 
     render() {
-
         return (
-
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
@@ -209,8 +201,6 @@ class Contact extends Component {
             </div>
         );
     }
-
 }
-
 
 export default Contact;
